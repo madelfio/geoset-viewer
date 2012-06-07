@@ -48,7 +48,8 @@ def get_categories(search_string=None):
 
 def get_entities(cat_id):
     res = g.db.execute(ENT_QUERY, (cat_id,))
-    return [dict(cat=nice_str(r[0]), name=nice_str(r[1]),
+    return [dict(cat=nice_str(r[0]), url_cat=r[0],
+                 name=nice_str(r[1]), url_name=r[1],
                  lat=r[2], lon=r[3]) for r in res]
 
 
