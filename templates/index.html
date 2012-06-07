@@ -3,6 +3,7 @@
   <head>
     <title>Spatial Browser for Wikipedia Categories</title>
     <link rel="stylesheet" href="{{ url_for('.static', filename='gv.css') }}" />
+    <link href='http://fonts.googleapis.com/css?family=Dosis' rel='stylesheet' type='text/css'>
   </head>
   <body>
     <div id="header"><h1>Spatial Browser for Wikipedia Categories</h1></div>
@@ -27,7 +28,7 @@
       <h2>Category: {{ entities[0].cat }} ({{ entities|length }} entries)</h2><br />
       {% for entity in entities %}
       <div class="sat-img-wrapper">
-        <img src="http://maps.googleapis.com/maps/api/staticmap?center={{ entity.lat }},{{ entity.lon }}&zoom= 16&scale=1&size=640x640&maptype=satellite&sensor=false&junk=.jpg&key={{ config.KEY }}" title="{{ entity.name }}" class="sat-img" />
+        <img src="http://maps.googleapis.com/maps/api/staticmap?center={{ entity.lat }},{{ entity.lon }}&zoom=16&scale=1&size=640x640&maptype=satellite&sensor=false&junk=.jpg{% if config.KEY %}&key={{ config.KEY }}{% endif %}" title="{{ entity.name }}" class="sat-img" />
       </div>
       {% endfor %}
       <div id="zoom-links">

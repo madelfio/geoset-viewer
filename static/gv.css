@@ -1,9 +1,9 @@
 html {
-  height: 100%; 
-  font-family:Arial, sans-serif; 
-  font-size:12px; 
-  line-height:16px;
-  color:#ccc; 
+  height: 100%;
+  font-family:'Dosis', sans-serif;
+  font-size:14px;
+  line-height:18px;
+  color:#ccc;
   background-color:#111;
 }
 
@@ -12,14 +12,15 @@ a {
   color:#ccc;
 }
 
-#header { 
-  position:absolute; 
-  top:0px; 
-  left:0px; 
-  right:0px; 
-  height:90px; 
+#header {
+  position:absolute;
+  top:0px;
+  left:0px;
+  right:0px;
+  height:90px;
   border:1px solid gray;
   padding:5px;
+  font-size:22px;
 }
 
 #left-panel {
