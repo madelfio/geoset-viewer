@@ -1,8 +1,8 @@
 html {
   height: 100%;
   font-family:'Dosis', sans-serif;
-  font-size:14px;
-  line-height:18px;
+  font-size:15px;
+  line-height:20px;
   color:#ccc;
   background-color:#111;
 }
@@ -58,35 +58,29 @@ a {
 }
 
 .sat-img-wrapper {
-  width:160px;
-  height:160px;
+  width:200px;
+  height:200px;
   overflow:hidden;
   display:inline-block;
   position:relative;
 }
 
 .zoom1 .sat-img {
-  width:160px;
-  height:160px;
+  width:200px;
+  height:200px;
 }
 
 .zoom2 .sat-img {
-  width:240px;
-  height:240px;
-  margin-left:-40px;
-  margin-top:-40px;
-}
-.zoom3 .sat-img {
   width:320px;
   height:320px;
-  margin-left:-80px;
-  margin-top:-80px;
+  margin-left:-60px;
+  margin-top:-60px;
 }
-.zoom4 .sat-img {
+.zoom3 .sat-img {
   width:640px;
   height:640px;
-  margin-left:-240px;
-  margin-top:-240px;
+  margin-left:-220px;
+  margin-top:-220px;
 }
 
 /*
@@ -133,7 +127,7 @@ a {
 }
 
 .extras div {
-  padding:1px;
+  padding:2px;
   background-color:black;
-  opacity:0.75;
+  opacity:0.8;
 }
