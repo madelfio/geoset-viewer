@@ -8,7 +8,11 @@ app.debug = True
 app.config['DATABASE'] = os.path.join(os.path.dirname(__file__), 'data/wiki.db')
 app.config['KEY'] = ''
 
-nice_str = lambda s: urllib2.unquote(s).replace('_', ' ')
+def nice_str(val):
+    my_val = val
+    if isinstance(val, unicode):
+        my_val = val.encode('ascii')
+    return urllib2.unquote(my_val).replace('_', ' ').decode('utf8')
 
 
 def unzip_db():
@@ -42,7 +46,7 @@ select * from wiki
 
 def get_categories(search_string=None):
     res = g.db.execute(CAT_QUERY, (search_string, search_string))
-    return (dict(id=r[0], name=nice_str(r[1])) for r in
+    return (dict(id=r[0], name=nice_str(r[1]), url_name=r[1]) for r in
             res.fetchall())
 
 
@@ -66,7 +70,7 @@ def index():
         entities = get_entities(cat_id)
     else:
         entities = []
-    
+
     return render_template('index.html', 
                            categories=categories,
                            entities=entities,
