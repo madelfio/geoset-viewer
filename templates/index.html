@@ -18,9 +18,18 @@
         </form>
       </div>
       <hr />
+      {% if categories %}
       {% for cat in categories %}
       <a href="/?cat_id={{ cat.id }}&search_string={{ search_string }}" data-cat-id="{{ cat.id }}">{{ cat.name }}</a><br />
       {% endfor %}
+      <hr />
+      {% endif %}
+      {% if suggested_categories %}
+      <h3>Suggested Categories</h3>
+      {% for cat in suggested_categories %}
+      <a href="/?cat_id={{ cat.id }}&search_string={{ search_string }}" data-cat-id="{{ cat.id }}">{{ cat.name }}</a><br />
+      {% endfor %}
+      {% endif %}
     </div>
 
     <div id="right-panel" class="zoom1">
@@ -45,7 +54,6 @@
         <button onclick="setZoom(1);">1</button>
         <button onclick="setZoom(2);">2</button>
         <button onclick="setZoom(3);">3</button>
-        <button onclick="setZoom(4);">4</button>
       {% endif %}
     </div>
     <script src="{{ url_for('.static', filename='gv.js') }}"></script>

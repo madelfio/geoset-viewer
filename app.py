@@ -29,9 +29,19 @@ def connect_db():
     return sqlite3.connect(app.config['DATABASE'])
 
 
+SUGGESTED_CATEGORIES = [
+    {'id':10795, 'name':'ACRA Racetracks'},
+    {'id':12544, 'name':'Airports in Sicily'},
+    {'id':22818, 'name':'Boston Harbor Islands'},
+    {'id':24029, 'name':'Bridges in Washington, D.C.'},
+    {'id':57158, 'name':'Geoglyphs'},
+    {'id':71521, 'name':'Indoor Arenas in Brazil'},
+]
+
+
 CAT_QUERY = """
 select * from category
- where cnt between 5 and 40
+ where cnt between 3 and 60
    and (? is null or name like '%'||?||'%')
  order by 2
  limit 1000;
@@ -64,18 +74,22 @@ def index():
     search_string = request.args.get('search_string', '')
     cat_id = request.args.get('cat_id')
 
-    categories = get_categories(search_string=search_string)
+    categories = []
+    if search_string:
+        categories = get_categories(search_string=search_string)
 
     if cat_id is not None:
         entities = get_entities(cat_id)
     else:
         entities = []
 
-    return render_template('index.html', 
+    return render_template('index.html',
                            categories=categories,
                            entities=entities,
                            cat_id=cat_id,
-                           search_string=search_string)
+                           search_string=search_string,
+                           suggested_categories=SUGGESTED_CATEGORIES,
+                          )
 
 
 if __name__ == '__main__':
