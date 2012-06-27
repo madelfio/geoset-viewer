@@ -31,7 +31,7 @@
       <hr />
       {% endif %}
       {% if suggested_categories %}
-      <h3>Suggested Categories</h3>
+      <h3>Example Categories</h3>
       {% for cat in suggested_categories %}
       <a href="./?cat_id={{ cat.id }}&search_string={{ search_string }}{% if cat.defaultzoom %}&defaultzoom={{cat.defaultzoom}}{% endif %}" data-cat-id="{{ cat.id }}">{{ cat.name }}</a><br />
       {% endfor %}
@@ -62,7 +62,7 @@
         <button onclick="setZoom(3);">3</button>
       {% else %}
         <h2>&lt;&mdash; Search for a Wikipedia category to display or
-          select a suggested category.</h2>
+          select one of the examples.</h2>
       {% endif %}
     </div>
     <script src="{{ url_for('.static', filename='gv.js') }}"></script>
