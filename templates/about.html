@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Spatial Browser for Wikipedia Categories</title>
+    <link rel="stylesheet" href="{{ url_for('.static', filename='gv.css') }}" />
+    <link href='http://fonts.googleapis.com/css?family=Dosis' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+    <div id="header">
+      <h1><a href="./">Spatial Browser for Wikipedia Categories</a></h1>
+      <div id="nav"><a href="./">Home</a></div>
+    </div>
+    <div id="main">
+      <div id="about">
+        <h3>A different way to browse Wikipedia</h3>
+        We combine the (underutilized) Wikipedia category listings with
+        the geographic locations assigned to many entities to create a
+        collection of point sets.  The interface allows you to visually
+        compare the Wikipedia entities within any category, using their
+        satellite images.
+        <br />
+        <br />
+        <h4>Technology</h4>
+        Created using <a target="_blank" href="http://www.python.org">Python</a>, 
+        <a target="_blank" href="http://flask.pocoo.org">Flask</a>, and 
+        <a target="_blank" href="http://www.sqlite.org">SQLite</a> on the backend, and the
+        <a target="_blank" href="https://developers.google.com/maps/documentation/staticmaps/">Google Maps Static API</a> 
+        on the frontend.
+        <br />
+        <br />
+
+        <h4>Caveats</h4>
+        The data comes from Wikipedia, so some of the locations and categories
+        are bound to be wrong.  Additionally, the locations and categories
+        were extracted from the
+        <a target="_blank" href="http://dbpedia.org/About">DBPedia</a> 3.7
+        data dump, so some of the data is old.
+        <br />
+        <br />
+        <br />
+        Created by <a href="http://umiacs.umd.edu/~marco/">Marco Adelfio</a> 
+        with help from <a href="http://umiacs.umd.edu/~nutanong/">Sarana Nutanong</a>.
+        <br />
+        <br />
+        Some design inspiration taken from <a href="http://prisonmap.com/">prisonmap.com</a>.
+        <br />
+        <br />
+      </div>
+
+    </div>
+
+  </body>
+</html>

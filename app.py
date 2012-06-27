@@ -37,8 +37,9 @@ SUGGESTED_CATEGORIES = [
     {'id':24029, 'name':'Bridges in Washington, D.C.'},
     {'id':31495, 'name':'Castles in Bavaria', 'defaultzoom':18},
     {'id':57158, 'name':'Geoglyphs', 'defaultzoom':18},
-    {'id':71521, 'name':'Indoor Arenas in Brazil', 'defaultzoom':17},
+    {'id':71521, 'name':'Indoor arenas in Brazil', 'defaultzoom':17},
     {'id':81582, 'name':'Major League Baseball Venues', 'defaultzoom':18},
+    {'id':83068, 'name':'Maximum security prisons in Australia', 'defaultzoom':17},
 ]
 
 
@@ -102,6 +103,9 @@ def index():
                            defaultzoom=defaultzoom
                           )
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
 
 if __name__ == '__main__':
     if not os.path.isfile(app.config['DATABASE']):
