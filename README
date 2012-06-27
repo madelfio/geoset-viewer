@@ -1,0 +1,5 @@
+A browser for categorized geographic datasets.  Currently designed for use
+with Wikipedia data (via a DBpedia dump), but could be adapted to other
+data sources.
+
+Online demo at: http://sametwsgi.umiacs.umd.edu/spatiopedia
