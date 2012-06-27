@@ -3,11 +3,19 @@ import sqlite3
 import urllib2
 import urlparse
 
+BASE_DIR = os.path.dirname(__file__)
+
 from flask import Flask, render_template, request, g, redirect, url_for
 app = Flask(__name__)
 app.debug = True
-app.config['DATABASE'] = os.path.join(os.path.dirname(__file__), 'data/wiki.db')
-app.config['KEY'] = ''
+app.config['DATABASE'] = os.path.join(BASE_DIR, 'data/wiki.db')
+
+# use external config to store google maps key in separate file
+external_config_file = os.path.join(BASE_DIR, 'config.txt')
+if os.path.isfile(external_config_file):
+    with open(external_config_file) as f:
+        external_config = dict(l.split(':') for l in f)
+    app.config.update(external_config)
 
 def nice_str(val):
     my_val = val
