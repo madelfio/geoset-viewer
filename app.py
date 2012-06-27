@@ -1,8 +1,9 @@
 import os
 import sqlite3
 import urllib2
+import urlparse
 
-from flask import Flask, render_template, request, g
+from flask import Flask, render_template, request, g, redirect, url_for
 app = Flask(__name__)
 app.debug = True
 app.config['DATABASE'] = os.path.join(os.path.dirname(__file__), 'data/wiki.db')
@@ -31,11 +32,13 @@ def connect_db():
 
 SUGGESTED_CATEGORIES = [
     {'id':10795, 'name':'ACRA Racetracks'},
-    {'id':12544, 'name':'Airports in Sicily'},
+    {'id':12544, 'name':'Airports in Sicily', 'defaultzoom':15},
     {'id':22818, 'name':'Boston Harbor Islands'},
     {'id':24029, 'name':'Bridges in Washington, D.C.'},
-    {'id':57158, 'name':'Geoglyphs'},
-    {'id':71521, 'name':'Indoor Arenas in Brazil'},
+    {'id':31495, 'name':'Castles in Bavaria', 'defaultzoom':18},
+    {'id':57158, 'name':'Geoglyphs', 'defaultzoom':18},
+    {'id':71521, 'name':'Indoor Arenas in Brazil', 'defaultzoom':17},
+    {'id':81582, 'name':'Major League Baseball Venues', 'defaultzoom':18},
 ]
 
 
@@ -69,10 +72,17 @@ def get_entities(cat_id):
 
 @app.route('/')
 def index():
+
+    # missing trailing slash fix (to prevent broken links on sametwsgi)
+    if ('REQUEST_URI' in request.environ and
+        not urlparse.urlparse(request.environ['REQUEST_URI']).path.endswith('/')):
+        return redirect(url_for('index').rstrip('/') + '/')
+
     g.db = connect_db()
 
     search_string = request.args.get('search_string', '')
     cat_id = request.args.get('cat_id')
+    defaultzoom = request.args.get('defaultzoom', '')
 
     categories = []
     if search_string:
@@ -89,6 +99,7 @@ def index():
                            cat_id=cat_id,
                            search_string=search_string,
                            suggested_categories=SUGGESTED_CATEGORIES,
+                           defaultzoom=defaultzoom
                           )
 
 

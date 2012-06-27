@@ -9,9 +9,12 @@
     <div id="header"><h1>Spatial Browser for Wikipedia Categories</h1></div>
     <div id="left-panel">
       <div id="search">
-        <form action="/">
+        <form action="./">
           {% if cat_id %}
           <input type="hidden" name="cat_id" value="{{ cat_id|string }}" />
+          {% endif %}
+          {% if defaultzoom %}
+          <input type="hidden" name="defaultzoom" value="{{ defaultzoom|string }}" />
           {% endif %}
           <input type="text" name="search_string" value="{{ search_string }}"/>
           <button>Search</button>
@@ -20,14 +23,14 @@
       <hr />
       {% if categories %}
       {% for cat in categories %}
-      <a href="/?cat_id={{ cat.id }}&search_string={{ search_string }}" data-cat-id="{{ cat.id }}">{{ cat.name }}</a><br />
+      <a href="./?cat_id={{ cat.id }}&search_string={{ search_string }}" data-cat-id="{{ cat.id }}">{{ cat.name }}</a><br />
       {% endfor %}
       <hr />
       {% endif %}
       {% if suggested_categories %}
       <h3>Suggested Categories</h3>
       {% for cat in suggested_categories %}
-      <a href="/?cat_id={{ cat.id }}&search_string={{ search_string }}" data-cat-id="{{ cat.id }}">{{ cat.name }}</a><br />
+      <a href="./?cat_id={{ cat.id }}&search_string={{ search_string }}{% if cat.defaultzoom %}&defaultzoom={{cat.defaultzoom}}{% endif %}" data-cat-id="{{ cat.id }}">{{ cat.name }}</a><br />
       {% endfor %}
       {% endif %}
     </div>
@@ -37,7 +40,7 @@
       <h2>Category: {{ entities[0].cat }} ({{ entities|length }} entries)</h2><br />
       {% for entity in entities %}
       <div class="sat-img-wrapper">
-        <img src="http://maps.googleapis.com/maps/api/staticmap?center={{ entity.lat }},{{ entity.lon }}&zoom=16&scale=1&size=640x640&maptype=satellite&sensor=false&junk=.jpg{% if config.KEY %}&key={{ config.KEY }}{% endif %}" class="sat-img" />
+        <img src="http://maps.googleapis.com/maps/api/staticmap?center={{ entity.lat }},{{ entity.lon }}&zoom={% if defaultzoom %}{{ defaultzoom }}{% else %}16{% endif %}&scale=1&size=640x640&maptype=satellite&sensor=false&junk=.jpg{% if config.KEY %}&key={{ config.KEY }}{% endif %}" class="sat-img" />
         <div class="extras">
           <div class="t"> {{ entity.name }}</div>
           <div class="bl">
