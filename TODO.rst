@@ -1,0 +1,3 @@
+- Make defaultzoom configurable without manually changing URL.
+- Better text search for categories.
+- Add link to Wikipedia category page next to category title.
