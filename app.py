@@ -49,7 +49,9 @@ SUGGESTED_CATEGORIES = [
     {'id':71521, 'name':'Indoor arenas in Brazil', 'defaultzoom':17},
     {'id':81582, 'name':'Major League Baseball Venues', 'defaultzoom':18},
     {'id':83068, 'name':'Maximum security prisons in Australia', 'defaultzoom':17},
+    {'id':101099, 'name':'Parliaments by country', 'defaultzoom':18},
     {'id':120581, 'name':'Road interchanges in the United States'},
+    {'id':132788, 'name':'State capitols in the United States', 'defaultzoom':18},
 ]
 
 
