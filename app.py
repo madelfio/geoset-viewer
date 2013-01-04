@@ -57,7 +57,7 @@ SUGGESTED_CATEGORIES = [
 
 CAT_QUERY = """
 select * from category
- where cnt between 3 and 60
+ where cnt between 2 and 80
    and (? is null or name like '%'||?||'%')
  order by 2
  limit 1000;
